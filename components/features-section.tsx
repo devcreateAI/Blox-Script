@@ -1,50 +1,50 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Zap, BrainCircuit, ShieldCheck, Code } from "lucide-react"
+"use client"
+
+import { Zap, Layers, ShieldCheck } from "lucide-react"
 
 const features = [
   {
-    icon: <Zap className="w-8 h-8 text-scripton-green" />,
-    title: "Instant Code Generation",
-    description: "Get complex Roblox Lua scripts in seconds, not hours. Just describe what you need.",
+    icon: Zap,
+    title: "Prompt to Script in Seconds",
+    description: "Instantly create production-ready Lua from plain English.",
+    color: "text-scripton-green",
+    delay: "360ms",
   },
   {
-    icon: <BrainCircuit className="w-8 h-8 text-scripton-cyan" />,
-    title: "Powered by Advanced AI",
-    description: "Utilizing state-of-the-art AI models to understand your requests and generate high-quality code.",
+    icon: Layers,
+    title: "Generate Multi-Script Systems",
+    description: "Weapons, NPCs, UI & more — all interconnected automatically.",
+    color: "text-scripton-pink",
+    delay: "480ms",
   },
   {
-    icon: <ShieldCheck className="w-8 h-8 text-scripton-pink" />,
-    title: "Secure & Reliable",
-    description: "Generated scripts follow best practices for security and performance in the Roblox engine.",
-  },
-  {
-    icon: <Code className="w-8 h-8 text-gray-400" />,
-    title: "For All Skill Levels",
-    description: "Whether you're a beginner or a pro, BloxScript accelerates your development workflow.",
+    icon: ShieldCheck,
+    title: "Secure & Optimized Code",
+    description: "Generates safe, server-validated code that's optimized for performance from the start.",
+    color: "text-scripton-cyan",
+    delay: "600ms",
   },
 ]
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-16 md:py-24 bg-scripton-dark/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">Why Choose BLOXSCRIPT?</h2>
-          <p className="mt-4 text-lg text-gray-400">The ultimate toolkit for modern Roblox developers.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {features.map((feature, index) => (
-            <Card key={index} className="voxel border-white/10">
-              <CardHeader className="flex flex-row items-center gap-4">
-                <div className="p-3 rounded-lg bg-gradient-to-br from-white/10 to-transparent">{feature.icon}</div>
-                <CardTitle>{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-400">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+    <section id="features" className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+      <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-12 md:mb-14 text-center">
+        Why developers choose BLOXSCRIPT
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        {features.map((feature, index) => (
+          <div
+            key={feature.title}
+            className="fade voxel card3d rounded-lg p-8 ring-1 ring-white/10 shadow-xl"
+            style={{ animationDelay: feature.delay }}
+          >
+            <feature.icon className={`w-7 h-7 ${feature.color} mb-5`} />
+            <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+            <p className="text-gray-300 text-sm">{feature.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   )

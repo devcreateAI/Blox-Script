@@ -56,7 +56,7 @@ export function DashboardContent({ initialUser }: DashboardContentProps) {
     <div className="min-h-screen">
       <DashboardHeader user={currentUser} />
 
-      <main className="max-w-[1600px] mx-auto px-6 py-8">
+      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 py-8">
         <div className="mb-6">
           <h1 className="text-2xl font-semibold">Dashboard</h1>
         </div>

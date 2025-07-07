@@ -1,40 +1,31 @@
-import Link from "next/link"
-import Image from "next/image"
+"use client"
 
 export function Footer() {
   return (
-    <footer className="bg-scripton-card/50 border-t border-white/10">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex-shrink-0">
-            <Link href="/">
-              <Image
-                src="/images/bloxscript-full-logo.png"
-                alt="BLOXSCRIPT"
-                width={150}
-                height={40}
-                className="h-10 w-auto"
-              />
-            </Link>
-          </div>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
-            <Link href="#features" className="hover:text-white">
-              Features
-            </Link>
-            <Link href="#pricing" className="hover:text-white">
-              Pricing
-            </Link>
-            <Link href="/auth/signin" className="hover:text-white">
-              Sign In
-            </Link>
-            <Link href="/auth/signup" className="hover:text-white">
-              Sign Up
-            </Link>
-          </div>
-          <div className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} BLOXSCRIPT. All rights reserved.
-          </div>
-        </div>
+    <footer className="relative border-t border-white/10 py-10 overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundSize: "32px 32px",
+          backgroundImage:
+            "linear-gradient(90deg, #1a1a26 1px, transparent 1px), linear-gradient(#1a1a26 1px, transparent 1px)",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 relative text-center md:text-left">
+        <span className="text-sm text-gray-400">© 2025 BLOXSCRIPT. All rights reserved.</span>
+
+        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+          <a href="#" className="hover:text-scripton-cyan transition">
+            Terms
+          </a>
+          <a href="#" className="hover:text-scripton-cyan transition">
+            Privacy
+          </a>
+          <a href="#" className="hover:text-scripton-cyan transition">
+            Support
+          </a>
+        </nav>
       </div>
     </footer>
   )

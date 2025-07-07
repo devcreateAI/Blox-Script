@@ -272,9 +272,10 @@ export function SettingsContent({ user }: SettingsContentProps) {
                       <span>Add your API keys:</span>
                     </li>
                   </ol>
-                  <div className="bg-[#0d1117] p-4 rounded-lg border border-white/10 overflow-x-auto">
-                    <pre className="text-sm text-gray-300">
+                  <div className="bg-[#0d1117] p-4 rounded-lg border border-white/10">
+                    <pre className="text-sm text-gray-300 overflow-x-auto">
                       {`ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
+GROQ_API_KEY=gsk-your-groq-key-here
 OPENAI_API_KEY=sk-your-openai-key-here`}
                     </pre>
                   </div>

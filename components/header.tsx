@@ -4,8 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useAuth } from "@/hooks/use-auth"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 import { Menu, X } from "lucide-react"
 
 export function Header() {
@@ -21,7 +21,7 @@ export function Header() {
 
   return (
     <header className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between">
-      <Link href="/" className="flex items-center">
+      <Link href="/" className="flex items-center mx-0 font-normal flex-row">
         <Image
           src="/images/bloxscript-full-logo.png"
           alt="BLOXSCRIPT"
@@ -31,6 +31,7 @@ export function Header() {
         />
       </Link>
 
+      {/* Desktop Navigation */}
       <nav className="hidden md:flex gap-8 text-sm">
         {navLinks.map((link) => (
           <a key={link.href} href={link.href} className="hover:text-scripton-cyan transition">
@@ -39,6 +40,7 @@ export function Header() {
         ))}
       </nav>
 
+      {/* Desktop Auth Buttons */}
       <div className="hidden md:flex items-center gap-4">
         {user ? (
           <>
@@ -70,6 +72,7 @@ export function Header() {
         )}
       </div>
 
+      {/* Mobile Menu */}
       <div className="md:hidden">
         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <SheetTrigger asChild>
@@ -78,7 +81,7 @@ export function Header() {
               <span className="sr-only">Open menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full bg-scripton-dark border-l-white/10">
+          <SheetContent side="right" className="w-full bg-[#0a0a12] border-l-white/10 p-0">
             <div className="flex flex-col h-full">
               <div className="flex justify-between items-center p-4 border-b border-white/10">
                 <Link href="/" onClick={() => setIsMenuOpen(false)}>
@@ -90,47 +93,58 @@ export function Header() {
                     className="h-10 w-auto"
                   />
                 </Link>
-                <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
-                  <X className="h-6 w-6" />
-                  <span className="sr-only">Close menu</span>
-                </Button>
+                <SheetClose asChild>
+                  <Button variant="ghost" size="icon">
+                    <X className="h-6 w-6" />
+                    <span className="sr-only">Close menu</span>
+                  </Button>
+                </SheetClose>
               </div>
               <nav className="flex flex-col items-center justify-center flex-1 gap-8 text-lg">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="hover:text-scripton-cyan transition"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
+                  <SheetClose asChild key={link.href}>
+                    <a href={link.href} className="hover:text-scripton-cyan transition">
+                      {link.label}
+                    </a>
+                  </SheetClose>
                 ))}
               </nav>
               <div className="p-4 border-t border-white/10 flex flex-col gap-4">
                 {user ? (
                   <>
-                    <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>
-                      <Button variant="outline" className="w-full border-white/20 bg-transparent">
-                        Dashboard
-                      </Button>
-                    </Link>
-                    <Button onClick={signOut} className="w-full">
+                    <SheetClose asChild>
+                      <Link href="/dashboard">
+                        <Button variant="outline" className="w-full border-white/20 bg-transparent">
+                          Dashboard
+                        </Button>
+                      </Link>
+                    </SheetClose>
+                    <Button
+                      onClick={() => {
+                        signOut()
+                        setIsMenuOpen(false)
+                      }}
+                      className="w-full bg-red-500/20 text-red-400 hover:bg-red-500/30"
+                    >
                       Sign Out
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Link href="/auth/signin" onClick={() => setIsMenuOpen(false)}>
-                      <Button variant="outline" className="w-full border-white/20 bg-transparent">
-                        Sign In
-                      </Button>
-                    </Link>
-                    <Link href="/auth/signup" onClick={() => setIsMenuOpen(false)}>
-                      <Button className="w-full bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110">
-                        Try Free
-                      </Button>
-                    </Link>
+                    <SheetClose asChild>
+                      <Link href="/auth/signin">
+                        <Button variant="outline" className="w-full border-white/20 bg-transparent">
+                          Sign In
+                        </Button>
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link href="/auth/signup">
+                        <Button className="w-full bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110">
+                          Try Free
+                        </Button>
+                      </Link>
+                    </SheetClose>
                   </>
                 )}
               </div>
