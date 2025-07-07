@@ -1,6 +1,5 @@
 import { createAnthropic } from "@ai-sdk/anthropic"
 import { createOpenAI } from "@ai-sdk/openai"
-import { createGroq } from "@ai-sdk/groq"
 
 // AI Provider Configuration - Prioritized by code quality
 export const AI_PROVIDERS = {
@@ -46,20 +45,6 @@ export const AI_PROVIDERS = {
     setup: () => (process.env.ANTHROPIC_API_KEY ? createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }) : null),
   },
 
-  // Groq - Free alternative with good Lua support
-  groq: {
-    name: "Groq Llama 3.1 70B",
-    provider: "groq",
-    free: true,
-    tier: "free",
-    dailyLimit: 100,
-    model: "llama-3.1-70b-versatile",
-    quality: "Good",
-    speed: "Very Fast",
-    specialty: "General scripting, free tier",
-    setup: () => (process.env.GROQ_API_KEY ? createGroq({ apiKey: process.env.GROQ_API_KEY }) : null),
-  },
-
   // OpenAI GPT-4 - Good for code but not as specialized as Claude
   "gpt-4": {
     name: "GPT-4 Turbo",
@@ -92,8 +77,8 @@ export const AI_PROVIDERS = {
 // Get the best available provider based on user plan and available APIs
 export function getBestAvailableProvider(userPlan = "free", preferredTier = "premium") {
   // Priority order based on Lua scripting quality
-  const premiumOrder = ["claude-opus", "claude-sonnet", "gpt-4", "claude-haiku", "gpt-3.5", "groq"]
-  const freeOrder = ["groq", "claude-haiku", "gpt-3.5", "claude-sonnet", "claude-opus", "gpt-4"]
+  const premiumOrder = ["claude-opus", "claude-sonnet", "gpt-4", "claude-haiku", "gpt-3.5"]
+  const freeOrder = ["claude-haiku", "gpt-3.5", "claude-sonnet", "claude-opus", "gpt-4"]
 
   const priorityOrder = userPlan === "pro" ? premiumOrder : freeOrder
 

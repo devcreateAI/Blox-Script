@@ -31,25 +31,6 @@ export async function POST(request: NextRequest) {
         }
         break
 
-      case "groq":
-        try {
-          const { createGroq } = await import("@ai-sdk/groq")
-          const groq = createGroq({ apiKey })
-
-          const { text } = await generateText({
-            model: groq("llama-3.1-8b-instant"), // Use fastest model for testing
-            prompt: "Say 'Groq API key is working!' and nothing else.",
-          })
-
-          result = { success: true, response: text, model: "Llama 3.1 8B" }
-        } catch (error) {
-          result = {
-            success: false,
-            error: error instanceof Error ? error.message : "Groq API test failed",
-          }
-        }
-        break
-
       case "openai":
         try {
           const { createOpenAI } = await import("@ai-sdk/openai")

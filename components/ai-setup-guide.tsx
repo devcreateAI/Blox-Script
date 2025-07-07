@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink, Key, Zap, Code, Crown, Star } from "lucide-react"
+import { ExternalLink, Key, Code, Crown, Star } from "lucide-react"
 
 export function AISetupGuide() {
   const [selectedProvider, setSelectedProvider] = useState("claude")
@@ -30,25 +30,6 @@ export function AISetupGuide() {
       ],
       envVar: "ANTHROPIC_API_KEY",
       models: ["Claude 3 Opus (Best)", "Claude 3.5 Sonnet (Fast)", "Claude 3 Haiku (Quick)"],
-    },
-    groq: {
-      name: "Groq",
-      icon: Zap,
-      free: true,
-      tier: "Free",
-      limit: "100 requests/day",
-      speed: "Very Fast",
-      quality: "Good",
-      signupUrl: "https://console.groq.com",
-      recommended: false,
-      steps: [
-        "Go to console.groq.com and create a free account",
-        "Navigate to 'API Keys' in the dashboard",
-        "Click 'Create API Key' and copy it",
-        "Add GROQ_API_KEY to your environment variables",
-      ],
-      envVar: "GROQ_API_KEY",
-      models: ["Llama 3.1 70B", "Llama 3.1 8B"],
     },
     openai: {
       name: "OpenAI",
@@ -86,7 +67,7 @@ export function AISetupGuide() {
 
       <CardContent>
         <Tabs value={selectedProvider} onValueChange={setSelectedProvider}>
-          <TabsList className="grid w-full grid-cols-3 bg-[#1a1a26]">
+          <TabsList className="grid w-full grid-cols-2 bg-[#1a1a26]">
             {Object.entries(providers).map(([key, provider]) => (
               <TabsTrigger key={key} value={key} className="data-[state=active]:bg-scripton-cyan/20 relative">
                 <provider.icon className="w-4 h-4 mr-1" />
@@ -201,8 +182,6 @@ export function AISetupGuide() {
                 <p className="text-xs text-gray-400">
                   {key === "claude" &&
                     "Claude Opus is specifically trained on code and excels at complex Lua patterns, game architecture, and Roblox-specific optimizations. It produces the most sophisticated and maintainable scripts."}
-                  {key === "groq" &&
-                    "Groq offers fast, free generation with Llama models. Great for testing and simple scripts, though not as specialized for game development as Claude."}
                   {key === "openai" &&
                     "OpenAI provides solid code generation with free trial credits. Good general programming capabilities but less specialized for Roblox than Claude."}
                 </p>

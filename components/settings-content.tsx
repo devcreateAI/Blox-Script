@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
 import { DashboardHeader } from "@/components/dashboard-header"
-import { TestTube, CheckCircle, XCircle, Eye, EyeOff, Copy, ExternalLink, Crown, Zap, Code } from "lucide-react"
+import { TestTube, CheckCircle, XCircle, Eye, EyeOff, Copy, ExternalLink, Crown, Code } from "lucide-react"
 
 interface SettingsContentProps {
   user: any
@@ -18,22 +18,18 @@ interface SettingsContentProps {
 export function SettingsContent({ user }: SettingsContentProps) {
   const [apiKeys, setApiKeys] = useState({
     anthropic: "",
-    groq: "",
     openai: "",
   })
   const [showKeys, setShowKeys] = useState({
     anthropic: false,
-    groq: false,
     openai: false,
   })
   const [testing, setTesting] = useState({
     anthropic: false,
-    groq: false,
     openai: false,
   })
   const [testResults, setTestResults] = useState({
     anthropic: null,
-    groq: null,
     openai: null,
   })
   const { toast } = useToast()
@@ -50,7 +46,6 @@ export function SettingsContent({ user }: SettingsContentProps) {
 
       setTestResults({
         anthropic: data.configured.anthropic ? "configured" : null,
-        groq: data.configured.groq ? "configured" : null,
         openai: data.configured.openai ? "configured" : null,
       })
     } catch (error) {
@@ -123,16 +118,6 @@ export function SettingsContent({ user }: SettingsContentProps) {
       tier: "Premium",
       color: "scripton-pink",
       placeholder: "sk-ant-api03-...",
-    },
-    groq: {
-      name: "Groq",
-      icon: Zap,
-      envVar: "GROQ_API_KEY",
-      signupUrl: "https://console.groq.com",
-      description: "⚡ Fast and free",
-      tier: "Free",
-      color: "scripton-green",
-      placeholder: "gsk_...",
     },
     openai: {
       name: "OpenAI",
@@ -290,7 +275,6 @@ export function SettingsContent({ user }: SettingsContentProps) {
                   <div className="bg-[#0d1117] p-4 rounded-lg border border-white/10">
                     <pre className="text-sm text-gray-300">
                       {`ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
-GROQ_API_KEY=gsk-your-groq-key-here
 OPENAI_API_KEY=sk-your-openai-key-here`}
                     </pre>
                   </div>

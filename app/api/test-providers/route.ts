@@ -70,27 +70,6 @@ export async function GET() {
     }
   }
 
-  // Test other providers...
-  if (process.env.GROQ_API_KEY) {
-    try {
-      const { createGroq } = await import("@ai-sdk/groq")
-      const groq = createGroq({ apiKey: process.env.GROQ_API_KEY })
-
-      const { text } = await generateText({
-        model: groq("llama-3.1-70b-versatile"),
-        prompt: "Say 'Groq is working!' and nothing else.",
-      })
-
-      results.availableProviders.push("Groq Llama 3.1 70B (Free)")
-      results.testResults.groq = { status: "success", response: text }
-    } catch (error) {
-      results.testResults.groq = {
-        status: "error",
-        error: error instanceof Error ? error.message : "Unknown error",
-      }
-    }
-  }
-
   // Determine recommended setup
   if (results.claudeModels.length > 0) {
     results.recommendedSetup = {
