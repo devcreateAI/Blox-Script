@@ -2,43 +2,36 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Rocket } from "lucide-react"
+import { CodePreview } from "@/components/code-preview"
 
 export function HeroSection() {
   return (
-    <section className="max-w-7xl mx-auto px-6 pt-20 pb-32">
-      <div className="text-center relative">
-        <h1 className="fade text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight mb-6 max-w-4xl mx-auto">
-          Instant Roblox Lua Scripts from Your Ideas.
+    <section id="hero" className="py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+          Build Roblox Games Faster Than Ever
         </h1>
-
-        <p
-          className="fade text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
-          style={{ animationDelay: "120ms" }}
-        >
-          Turn natural language prompts into advanced Roblox code. Build faster, dream bigger with BLOXSCRIPT.
+        <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-400">
+          Turn natural language prompts into advanced Roblox Lua code. Build faster, dream bigger with BLOXSCRIPT.
         </p>
-
-        <div
-          className="fade flex flex-col sm:flex-row gap-4 justify-center items-center"
-          style={{ animationDelay: "240ms" }}
-        >
+        <div className="mt-8 flex justify-center gap-4 flex-wrap">
           <Link href="/auth/signup">
-            <Button className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-scripton-green to-scripton-cyan hover:brightness-110 transition font-medium shadow-xl text-lg">
-              <Rocket className="w-5 h-5" />
-              Try BLOXSCRIPT Free
+            <Button
+              size="lg"
+              className="px-8 py-3 rounded-md bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110 transition font-medium shadow-lg"
+            >
+              Start Generating for Free
             </Button>
           </Link>
-
           <Link href="#playground">
-            <Button
-              variant="outline"
-              className="px-8 py-4 rounded-lg border-white/20 hover:border-scripton-cyan/50 bg-transparent text-lg"
-            >
-              See Examples
+            <Button size="lg" variant="outline" className="border-white/20 bg-transparent">
+              See it in Action
             </Button>
           </Link>
         </div>
+      </div>
+      <div id="playground" className="mt-12 md:mt-20">
+        <CodePreview />
       </div>
     </section>
   )

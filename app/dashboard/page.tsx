@@ -1,30 +1,36 @@
-import { redirect } from "next/navigation"
-import { DashboardContent } from "@/components/dashboard-content"
-import { getCurrentUser } from "@/lib/auth"
-import { Suspense } from "react"
+"use client"
 
-function DashboardLoading() {
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin w-8 h-8 border-2 border-scripton-cyan border-t-transparent rounded-full mx-auto mb-4"></div>
-        <p className="text-gray-400">Loading dashboard...</p>
+import { useAuth } from "@/hooks/use-auth"
+import { DashboardHeader } from "@/components/dashboard-header"
+import { ScriptGenerator } from "@/components/script-generator"
+import { ScriptHistory } from "@/components/script-history"
+import { UsageStats } from "@/components/usage-stats"
+
+export default function DashboardPage() {
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin w-10 h-10 border-4 border-scripton-cyan border-t-transparent rounded-full"></div>
       </div>
-    </div>
-  )
-}
-
-export default async function DashboardPage() {
-  const user = await getCurrentUser()
-
-  // Only redirect if we're sure there's no user (not just a timing issue)
-  if (!user) {
-    redirect("/auth/signin")
+    )
   }
 
   return (
-    <Suspense fallback={<DashboardLoading />}>
-      <DashboardContent initialUser={user} />
-    </Suspense>
+    <div className="min-h-screen">
+      <DashboardHeader user={user} />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div className="lg:col-span-2 space-y-8">
+            <ScriptGenerator user={user} />
+          </div>
+          <div className="space-y-8">
+            <UsageStats user={user} />
+            <ScriptHistory user={user} />
+          </div>
+        </div>
+      </main>
+    </div>
   )
 }

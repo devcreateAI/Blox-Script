@@ -1,4 +1,6 @@
 "use client"
+import { Card, CardContent } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const testimonials = [
   {
@@ -49,156 +51,74 @@ const testimonials = [
     ringColor: "ring-scripton-green",
     delay: "1320ms",
   },
+  {
+    name: "Dev_Jake",
+    handle: "@jakerblx",
+    avatar: "/placeholder-user.jpg",
+    text: "BLOXSCRIPT is a game-changer. I can prototype ideas in minutes that used to take me hours. The generated code is surprisingly clean and efficient.",
+  },
+  {
+    name: "StudioScripter",
+    handle: "@studioscript",
+    avatar: "/placeholder-user.jpg",
+    text: "As a solo developer, this tool is like having a senior programmer on my team. It handles the boilerplate and lets me focus on the creative parts.",
+  },
+  {
+    name: "LianaGFX",
+    handle: "@lianagfx",
+    avatar: "/placeholder-user.jpg",
+    text: "I'm more of a designer, but BLOXSCRIPT has empowered me to bring my own ideas to life with code. It's incredibly intuitive!",
+  },
 ]
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="bg-[#101018] py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-14 text-center">
-          Loved by Roblox creators and More
-        </h2>
-
-        {/* Desktop Grid Layout */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-8">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
-            <div
-              key={testimonial.author}
-              className="fade voxel card3d rounded-lg p-6 ring-1 ring-white/10 shadow-xl"
-              style={{ animationDelay: testimonial.delay }}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div
-                  className={`w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 ring-2 ${testimonial.ringColor} flex-shrink-0 flex items-center justify-center`}
-                >
-                  <span className="text-white font-semibold text-sm">
-                    {testimonial.author
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-white">{testimonial.author}</h4>
-                  <p className="text-sm text-gray-400">{testimonial.role}</p>
-                </div>
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                "
-                {testimonial.quote.includes("5×") ? (
-                  <>
-                    Shipped my Roblox game <span className="text-scripton-green">5× faster!</span>
-                  </>
-                ) : testimonial.quote.includes("10x") ? (
-                  <>
-                    My students learn Roblox development <span className="text-scripton-cyan">10x faster</span> with
-                    this tool.
-                  </>
-                ) : (
-                  testimonial.quote
-                )}
-                "
-              </p>
-            </div>
-          ))}
+    <section id="testimonials" className="py-16 md:py-24 bg-scripton-dark/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">Loved by Roblox Creators</h2>
+          <p className="mt-4 text-lg text-gray-400">See what developers are saying about BLOXSCRIPT.</p>
         </div>
-
-        <div className="hidden lg:grid lg:grid-cols-3 gap-8">
-          {testimonials.slice(3, 6).map((testimonial, index) => (
-            <div
-              key={testimonial.author}
-              className="fade voxel card3d rounded-lg p-6 ring-1 ring-white/10 shadow-xl"
-              style={{ animationDelay: testimonial.delay }}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div
-                  className={`w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 ring-2 ${testimonial.ringColor} flex-shrink-0 flex items-center justify-center`}
-                >
-                  <span className="text-white font-semibold text-sm">
-                    {testimonial.author
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-white">{testimonial.author}</h4>
-                  <p className="text-sm text-gray-400">{testimonial.role}</p>
-                </div>
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                "
-                {testimonial.quote.includes("5×") ? (
-                  <>
-                    Shipped my Roblox game <span className="text-scripton-green">5× faster!</span>
-                  </>
-                ) : testimonial.quote.includes("10x") ? (
-                  <>
-                    My students learn Roblox development <span className="text-scripton-cyan">10x faster</span> with
-                    this tool.
-                  </>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index} className="voxel border-white/10">
+              <CardContent className="pt-6">
+                {testimonial.text ? (
+                  <p className="text-gray-300 mb-4">"{testimonial.text}"</p>
                 ) : (
-                  testimonial.quote
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    "
+                    {testimonial.quote.includes("5×") ? (
+                      <>
+                        Shipped my Roblox game <span className="text-scripton-green">5× faster!</span>
+                      </>
+                    ) : testimonial.quote.includes("10x") ? (
+                      <>
+                        My students learn Roblox development <span className="text-scripton-cyan">10x faster</span> with
+                        this tool.
+                      </>
+                    ) : (
+                      testimonial.quote
+                    )}
+                    "
+                  </p>
                 )}
-                "
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile/Tablet Horizontal Scroll */}
-        <div className="lg:hidden">
-          <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={testimonial.author}
-                className="fade voxel card3d rounded-lg p-6 ring-1 ring-white/10 shadow-xl min-w-[280px] snap-start"
-                style={{ animationDelay: testimonial.delay }}
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div
-                    className={`w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 ring-2 ${testimonial.ringColor} flex-shrink-0 flex items-center justify-center`}
-                  >
-                    <span className="text-white font-semibold text-sm">
-                      {testimonial.author
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </span>
-                  </div>
+                <div className="flex items-center gap-4">
+                  <Avatar>
+                    <AvatarImage
+                      src={testimonial.avatar || "/placeholder.svg"}
+                      alt={testimonial.author || testimonial.name}
+                    />
+                    <AvatarFallback>{(testimonial.author || testimonial.name).charAt(0)}</AvatarFallback>
+                  </Avatar>
                   <div>
-                    <h4 className="font-medium text-white">{testimonial.author}</h4>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
+                    <p className="font-semibold">{testimonial.author || testimonial.name}</p>
+                    <p className="text-sm text-gray-400">{testimonial.role || testimonial.handle}</p>
                   </div>
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  "
-                  {testimonial.quote.includes("5×") ? (
-                    <>
-                      Shipped my Roblox game <span className="text-scripton-green">5× faster!</span>
-                    </>
-                  ) : testimonial.quote.includes("10x") ? (
-                    <>
-                      My students learn Roblox development <span className="text-scripton-cyan">10x faster</span> with
-                      this tool.
-                    </>
-                  ) : (
-                    testimonial.quote
-                  )}
-                  "
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="flex justify-center mt-4">
-            <p className="text-xs text-gray-500 flex items-center gap-2">
-              <span>←</span>
-              Scroll to see more testimonials
-              <span>→</span>
-            </p>
-          </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
