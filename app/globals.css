@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background: radial-gradient(circle at 30% 80%, rgba(0, 255, 153, 0.08), transparent 45%),
+      radial-gradient(circle at 70% 10%, rgba(0, 204, 255, 0.08), transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255, 60, 100, 0.06), transparent 40%);
+  }
+
+  .voxel {
+    background: linear-gradient(135deg, #14141e 30%, #1b1b28);
+  }
+
+  .card3d {
+    transform: perspective(1000px) rotateX(2deg);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card3d:hover {
+    transform: perspective(1000px) translateY(-4px) rotateX(4deg);
+    box-shadow: 0 8px 24px -4px rgba(0, 204, 255, 0.3);
+  }
+
+  .fade {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeIn 0.9s forwards;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+  }
+
+  @keyframes float {
+    from {
+      transform: rotateX(-20deg) rotateY(0);
+    }
+    to {
+      transform: rotateX(-20deg) rotateY(-360deg);
+    }
+  }
+
+  /* Custom Slider Styles */
+  .slider {
+    background: linear-gradient(135deg, #1a1a26 0%, #2a2a36 100%);
+    outline: none;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ccff 0%, #ff2764 100%);
+    cursor: pointer;
+    border: 2px solid #ffffff20;
+    box-shadow: 0 2px 8px rgba(0, 204, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 204, 255, 0.5);
+  }
+
+  .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ccff 0%, #ff2764 100%);
+    cursor: pointer;
+    border: 2px solid #ffffff20;
+    box-shadow: 0 2px 8px rgba(0, 204, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 204, 255, 0.5);
+  }
+
+  .slider::-webkit-slider-track {
+    background: #1a1a26;
+    border-radius: 8px;
+    height: 8px;
+  }
+
+  .slider::-moz-range-track {
+    background: #1a1a26;
+    border-radius: 8px;
+    height: 8px;
+    border: none;
+  }
+
+  /* Custom Checkbox Styles */
+  input[type="checkbox"] {
+    appearance: none;
+    background-color: #1a1a26;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, #00ccff 0%, #ff2764 100%);
+    border-color: #00ccff;
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  input[type="checkbox"]:hover {
+    border-color: #00ccff;
+    box-shadow: 0 0 8px rgba(0, 204, 255, 0.3);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2e2e3d;
+  border-radius: 3px;
+}
