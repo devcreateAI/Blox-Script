@@ -84,14 +84,9 @@ export async function getCurrentUser() {
       }
     }
 
-    if (profile) {
-      profile.plan = "pro"
-    }
-
     const finalUser = {
       ...user,
       ...profile,
-      plan: "pro", // Force pro plan for admin
     }
 
     return finalUser

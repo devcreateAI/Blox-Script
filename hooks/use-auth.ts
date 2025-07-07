@@ -22,7 +22,6 @@ export function useAuth() {
         setUser({
           ...session.user,
           ...profile,
-          plan: "pro", // Force pro plan for admin
         })
       } else {
         setUser(null)
@@ -43,7 +42,6 @@ export function useAuth() {
         setUser({
           ...session.user,
           ...profile,
-          plan: "pro", // Force pro plan for admin
         })
       } else {
         setUser(null)

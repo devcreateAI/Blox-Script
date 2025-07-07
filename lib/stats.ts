@@ -50,6 +50,6 @@ export async function getUserStats(userId: string) {
     dailyUsage: profile?.daily_usage || 0,
     totalScripts: profile?.total_scripts || 0,
     thisWeekScripts: thisWeekScripts || 0,
-    plan: "pro", // Force pro plan for admin
+    plan: profile?.plan || "free",
   }
 }
