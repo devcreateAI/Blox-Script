@@ -56,20 +56,20 @@ export function DashboardContent({ initialUser }: DashboardContentProps) {
     <div className="min-h-screen">
       <DashboardHeader user={currentUser} />
 
-      <main className="max-w-[1600px] mx-auto px-6 py-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
+      <main className="max-w-[1600px] mx-auto px-4 md:px-6 py-4 md:py-8">
+        <div className="mb-4 md:mb-6">
+          <h1 className="text-xl md:text-2xl font-semibold">Dashboard</h1>
         </div>
 
-        {/* Updated layout with new right panel */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content Area - 2/3 width on desktop */}
-          <div className="lg:col-span-2 space-y-8">
+        {/* Updated responsive layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
+          {/* Main Content Area - full width on mobile, 2/3 width on desktop */}
+          <div className="lg:col-span-2 space-y-4 md:space-y-8">
             <ScriptGenerator user={currentUser} />
             <ScriptHistory user={currentUser} />
           </div>
 
-          {/* Stats Panel - 1/3 width on desktop */}
+          {/* Stats Panel - full width on mobile, 1/3 width on desktop */}
           <div className="lg:col-span-1">
             <UsageStats user={currentUser} />
           </div>

@@ -92,18 +92,21 @@ export function ScriptHistory({ user }: ScriptHistoryProps) {
 
   return (
     <div className="bg-scripton-card border border-white/10 rounded-lg p-4">
-      <h3 className="text-lg font-semibold mb-4 px-2">Recents</h3>
+      <h3 className="text-lg md:text-xl font-semibold mb-4 px-2">Recents</h3>
       {scripts.length === 0 ? (
-        <div className="text-center py-8">
-          <History className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-          <p className="text-gray-400">No recent scripts</p>
-          <p className="text-sm text-gray-500">Generate a script to see it here.</p>
+        <div className="text-center py-6 md:py-8">
+          <History className="w-10 h-10 md:w-12 md:h-12 text-gray-600 mx-auto mb-3 md:mb-4" />
+          <p className="text-gray-400 text-sm md:text-base">No recent scripts</p>
+          <p className="text-xs md:text-sm text-gray-500">Generate a script to see it here.</p>
         </div>
       ) : (
         <div className="space-y-1">
           {scripts.map((script) => (
-            <div key={script.id} className="flex items-center justify-between p-2 rounded-md hover:bg-[#1a1a26] group">
-              <p className="text-sm truncate flex-1 pr-4">{script.prompt}</p>
+            <div
+              key={script.id}
+              className="flex items-center justify-between p-2 md:p-3 rounded-md hover:bg-[#1a1a26] group"
+            >
+              <p className="text-xs md:text-sm truncate flex-1 pr-2 md:pr-4">{script.prompt}</p>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -115,15 +118,15 @@ export function ScriptHistory({ user }: ScriptHistoryProps) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-scripton-card border-white/10">
-                  <DropdownMenuItem onClick={() => handleCopy(script.code)}>
+                  <DropdownMenuItem onClick={() => handleCopy(script.code)} className="min-h-[40px]">
                     <Copy className="w-4 h-4 mr-2" />
                     Copy Script
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleDownload(script.code, script.prompt)}>
+                  <DropdownMenuItem onClick={() => handleDownload(script.code, script.prompt)} className="min-h-[40px]">
                     <Download className="w-4 h-4 mr-2" />
                     Download
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleDelete(script.id)} className="text-red-400">
+                  <DropdownMenuItem onClick={() => handleDelete(script.id)} className="text-red-400 min-h-[40px]">
                     <Trash2 className="w-4 h-4 mr-2" />
                     Delete
                   </DropdownMenuItem>

@@ -64,25 +64,25 @@ export function AuthForm({ mode }: AuthFormProps) {
 
   return (
     <Card className="w-full max-w-md voxel border-white/10">
-      <CardHeader className="text-center">
-        <Link href="/" className="flex justify-center mb-8">
+      <CardHeader className="text-center p-4 md:p-6">
+        <Link href="/" className="flex justify-center mb-6 md:mb-8">
           <Image
             src="/images/bloxscript-full-logo.png"
             alt="BLOXSCRIPT"
             width={280}
             height={100}
-            className="h-16 w-auto"
+            className="h-12 md:h-16 w-auto"
           />
         </Link>
-        <CardTitle className="text-xl">{isSignUp ? "Create your account" : "Welcome back"}</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-lg md:text-xl">{isSignUp ? "Create your account" : "Welcome back"}</CardTitle>
+        <CardDescription className="text-sm md:text-base">
           {isSignUp
             ? `Start generating Roblox scripts with ${plan === "pro" ? "Pro" : "Free"} plan`
             : "Sign in to your account to continue"}
         </CardDescription>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="p-4 md:p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -92,7 +92,7 @@ export function AuthForm({ mode }: AuthFormProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-[#1a1a26] border-white/10"
+              className="bg-[#1a1a26] border-white/10 h-12 md:h-10 text-base"
             />
           </div>
 
@@ -104,13 +104,13 @@ export function AuthForm({ mode }: AuthFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="bg-[#1a1a26] border-white/10"
+              className="bg-[#1a1a26] border-white/10 h-12 md:h-10 text-base"
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110"
+            className="w-full bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110 min-h-[48px] text-base"
             disabled={loading}
           >
             {loading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}

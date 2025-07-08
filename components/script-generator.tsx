@@ -87,9 +87,6 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
       setProgress("Script generated!")
       setGeneratedScript(data.script)
 
-      // Check if this is demo mode
-      // const isDemoMode = data.script.includes("🎮 SCRIPTON DEMO MODE") || data.script.includes("DEMO MODE:")
-
       toast({
         title: "Script Generated! ✨",
         description: "Your custom Roblox Lua script is ready to use.",
@@ -175,22 +172,22 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
 
   return (
     <Card className="voxel border-white/10 hover:shadow-[0_8px_24px_-4px_rgba(0,204,255,0.3)] hover:border-scripton-cyan/30 transition-all duration-300">
-      <CardHeader className="relative">
-        <CardTitle className="flex items-center gap-2 text-white">
+      <CardHeader className="relative p-4 md:p-6">
+        <CardTitle className="flex items-center gap-2 text-white text-lg md:text-xl">
           <div className="p-2 rounded-lg bg-gradient-to-br from-scripton-cyan/30 to-scripton-pink/30 shadow-lg">
-            <Wand2 className="w-5 h-5 text-scripton-cyan" />
+            <Wand2 className="w-4 h-4 md:w-5 md:h-5 text-scripton-cyan" />
           </div>
           Roblox Script Generator
         </CardTitle>
-        <CardDescription className="text-gray-300">
+        <CardDescription className="text-sm md:text-base text-gray-300">
           Powered by Claude AI • Describe your idea and get production-ready Roblox Lua code
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 md:space-y-6 p-4 md:p-6">
         {/* Usage Stats */}
-        <div className="flex items-center justify-between p-4 bg-[#1a1a26] rounded-lg border border-white/10 hover:border-white/20 transition-colors duration-200">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 md:p-4 bg-[#1a1a26] rounded-lg border border-white/10 hover:border-white/20 transition-colors duration-200">
+          <div className="flex items-center gap-3 mb-2 sm:mb-0">
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4 text-scripton-green" />
               <span className="text-sm font-medium">Usage Today:</span>
@@ -229,7 +226,7 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
             placeholder="e.g., Create a weapon system with damage, reload mechanics, and sound effects for a first-person shooter game..."
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            className="min-h-[120px] bg-[#1a1a26] border-white/10 resize-none focus:border-scripton-cyan/50 hover:border-white/20 transition-all duration-200"
+            className="min-h-[120px] md:min-h-[140px] bg-[#1a1a26] border-white/10 resize-none focus:border-scripton-cyan/50 hover:border-white/20 transition-all duration-200 text-sm md:text-base"
             disabled={loading}
             aria-label="Script description"
           />
@@ -245,11 +242,11 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
                 <button
                   key={index}
                   onClick={() => handleExampleClick(example)}
-                  className="text-xs px-3 py-1 rounded-full bg-scripton-card border border-white/10 hover:border-scripton-cyan/50 hover:bg-scripton-cyan/5 transition-all duration-200 text-gray-300 hover:text-white transform hover:scale-105"
+                  className="text-xs px-3 py-2 rounded-full bg-scripton-card border border-white/10 hover:border-scripton-cyan/50 hover:bg-scripton-cyan/5 transition-all duration-200 text-gray-300 hover:text-white transform hover:scale-105 min-h-[40px]"
                   disabled={loading}
                   aria-label={`Use example prompt: ${example}`}
                 >
-                  {example.length > 40 ? `${example.slice(0, 40)}...` : example}
+                  {example.length > 30 ? `${example.slice(0, 30)}...` : example}
                 </button>
               ))}
             </div>
@@ -260,7 +257,7 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
         <Button
           onClick={handleGenerate}
           disabled={loading || !canGenerate || !prompt.trim()}
-          className="w-full bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110 hover:scale-105 transition-all duration-200 font-medium py-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="w-full bg-gradient-to-r from-scripton-pink to-scripton-cyan hover:brightness-110 hover:scale-105 transition-all duration-200 font-medium py-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 min-h-[48px] text-base"
           aria-label="Generate Roblox script"
         >
           {loading ? (
@@ -307,7 +304,7 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
         {/* Generated Script */}
         {generatedScript && (
           <div className="space-y-4 fade" style={{ animationDelay: "200ms" }}>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <label className="text-sm font-medium flex items-center gap-2">
                 <div className="w-2 h-2 bg-scripton-green rounded-full animate-pulse" />
                 Generated Roblox Script
@@ -317,7 +314,7 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
                   size="sm"
                   variant="outline"
                   onClick={copyToClipboard}
-                  className="border-white/20 hover:border-scripton-cyan/50 bg-transparent hover:bg-scripton-cyan/5 transition-all duration-200 hover:scale-105"
+                  className="border-white/20 hover:border-scripton-cyan/50 bg-transparent hover:bg-scripton-cyan/5 transition-all duration-200 hover:scale-105 min-h-[40px]"
                   aria-label="Copy script to clipboard"
                 >
                   <Copy className="w-4 h-4 mr-1" />
@@ -327,7 +324,7 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
                   size="sm"
                   variant="outline"
                   onClick={downloadScript}
-                  className="border-white/20 hover:border-scripton-green/50 bg-transparent hover:bg-scripton-green/5 transition-all duration-200 hover:scale-105"
+                  className="border-white/20 hover:border-scripton-green/50 bg-transparent hover:bg-scripton-green/5 transition-all duration-200 hover:scale-105 min-h-[40px]"
                   aria-label="Download script file"
                 >
                   <Download className="w-4 h-4 mr-1" />
@@ -345,12 +342,12 @@ export function ScriptGenerator({ user }: ScriptGeneratorProps) {
                 </div>
                 <span className="text-xs text-gray-400 ml-2">script.lua</span>
               </div>
-              <pre className="p-6 text-sm overflow-auto max-h-96 bg-[#0d1117] hover:scrollbar-thumb-scripton-cyan/50 transition-colors duration-200">
+              <pre className="p-4 md:p-6 text-xs md:text-sm overflow-auto h-48 md:h-64 bg-[#0d1117] hover:scrollbar-thumb-scripton-cyan/50 transition-colors duration-200">
                 <code className="language-lua text-gray-100 leading-relaxed">{generatedScript}</code>
               </pre>
             </div>
 
-            <div className="bg-scripton-green/10 border border-scripton-green/20 rounded-lg p-4 hover:bg-scripton-green/15 transition-colors duration-200">
+            <div className="bg-scripton-green/10 border border-scripton-green/20 rounded-lg p-3 md:p-4 hover:bg-scripton-green/15 transition-colors duration-200">
               <p className="text-sm text-scripton-green font-medium mb-1">✅ Script Ready!</p>
               <p className="text-xs text-gray-400">
                 Copy this code into a Script or LocalScript in Roblox Studio. Check the comments for placement
